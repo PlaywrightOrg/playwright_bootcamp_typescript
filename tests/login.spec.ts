@@ -4,6 +4,7 @@ import LoginPage from '../pages/login';
 test.describe('Login', () => {
     let loginPage : LoginPage;
     
+     
 test.beforeEach(async ({ page }) => {
 
     loginPage = new LoginPage(page);
@@ -15,7 +16,7 @@ test.beforeEach(async ({ page }) => {
 
 test('Go to login page', async ({ page }) => {
 
-    await page.screenshot({ path: 'bootcampscreenshotlogin.png' });
+    await page.screenshot({ path: 'screenshots/bootcampscreenshotlogin.png' });
 })
 
 
@@ -27,7 +28,7 @@ test('Login', async ({ page }) => {
 
     await expect(page.getByRole('link', {name: 'Dashboard'})).toBeVisible();
 
-    await page.screenshot({ path: 'logged.png' });
+    await page.screenshot({ path: 'screenshots/logged.png' });
 })
 
 test('Go To Admin', async ({ page }) => {
@@ -41,7 +42,7 @@ test('Go To Admin', async ({ page }) => {
 
     await expect(page.getByRole('link', {name: 'admin'})).toBeVisible();
 
-    await page.screenshot({ path: 'admin.png' });
+    await page.screenshot({ path: 'screenshots/admin.png' });
 })
 
 test('Go To Leave', async ({ page }) => {
@@ -55,9 +56,7 @@ test('Go To Leave', async ({ page }) => {
 
     await expect(loginPage.leaveListTitle).toHaveText('Leave List');
 
-    await page.screenshot({ path: 'leave.png' });
+    await page.screenshot({ path: 'screenshots/leave.png' });
 })
-
-
 
 })

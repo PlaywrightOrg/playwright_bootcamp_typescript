@@ -36,7 +36,7 @@ test('Update personal details', async ({ page }) => {
 
     await page.waitForLoadState('networkidle');
 
-    await page.screenshot({ path: 'personaldetails.png' });
+    await page.screenshot({ path: 'screenshots/personaldetails.png' });
     
 })
 
@@ -58,7 +58,7 @@ test('Add emergency contact', async ({ page }) => {
 
     await expect(page.locator('#oxd-toaster_1')).toBeVisible();
 
-    await page.screenshot({ path: 'newcontactcreated.png' });
+    await page.screenshot({ path: 'screenshots/newcontactcreated.png' });
 })
 
 test('Upload a File', async ({ page }) => {
@@ -72,4 +72,6 @@ test('Upload a File', async ({ page }) => {
     await myInfoPage.verifySuccessDialog();
 
 })
+
+
 })
