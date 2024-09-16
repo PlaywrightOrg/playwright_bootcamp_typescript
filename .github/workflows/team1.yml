@@ -34,7 +34,7 @@ jobs:
       run: npm test
 
     - name: Upload artifact for test results
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       if: always()
       with:
         name: playwright-test-results
@@ -42,7 +42,7 @@ jobs:
         if-no-files-found: warn
 
     - name: Upload artifact for screenshots
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       if: failure()
       with:
         name: playwright-screenshots
