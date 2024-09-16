@@ -3,10 +3,10 @@ name: Playwright CI
 on:
   push:
     branches:
-      - main
+      - playwright-bootcamp-typescript-team1
   pull_request:
     branches:
-      - main
+      - playwright-bootcamp-typescript-team1
 
 jobs:
   test:
