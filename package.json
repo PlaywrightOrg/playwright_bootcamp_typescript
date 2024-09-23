@@ -1,11 +1,14 @@
 {
-  "name": "playwright_bootcamp_typescript",
+  "name": "playwright_bootcamp_typescript-team1",
   "version": "1.0.0",
   "description": "playwright_bootcamp_typescript",
   "main": "index.js",
-  "scripts": {  "start": "node app.js",
+  "scripts": {
+  "start": "node app.js",
   "test": "echo \"Error: no test specified\" && exit 1",
-  "build": "tsc"},
+  "build": "tsc",
+  "test:playwright-bootcamp-typescript-team1": "playwright test"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
