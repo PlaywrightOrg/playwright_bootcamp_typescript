@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import { PlaywrightTestConfig } from '@playwright/test';
-import globalSetup from '../global-setup';
-import globalTeardown from '../global-teardown';
+import globalSetup from './global-setup';
+import globalTeardown from './global-teardown';
 
 /**
  * Read environment variables from file.
