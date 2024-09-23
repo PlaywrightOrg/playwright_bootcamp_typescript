@@ -1,50 +1,59 @@
-name: Playwright CI
+name: Playwright Tests
 
 on:
+  schedule:
+    - cron: '0 5 * * *'
   push:
     branches:
-      - playwright-bootcamp-typescript-team1
+      - dev
+      - staging
+      - prod
   pull_request:
     branches:
-      - playwright-bootcamp-typescript-team1
+      - dev
+      - staging
+      - prod
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Compile TypeScript
-      run: npm run build
+      - name: Install Playwright Browsers
+        run: npx playwright install
 
-    - name: Run Playwright tests
-      run: npm test
+      - name: Run Playwright tests
+        run: npm run test:${{ github.ref_name }}
 
-    - name: Upload artifact for test results
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: playwright-test-results
-        path: '**/test-results/**'
-        if-no-files-found: warn
+      - name: Upload Playwright Test Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: playwright-report/
 
-    - name: Upload artifact for screenshots
-      uses: actions/upload-artifact@v3
-      if: failure()
-      with:
-        name: playwright-screenshots
-        path: '**/screenshots/**'
-        if-no-files-found: warn
+      - name: Upload Playwright Test Videos
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-videos
+          path: videos/
+
+      # - name: Deploy report to GitHub Pages
+      #   if: always()
+      #   run: |
+      #     npm install -g gh-pages
+      #     gh-pages -d public/playwright-report
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
